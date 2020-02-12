@@ -1,8 +1,8 @@
 Todo:
   ☐ 1 intro kafka
   ✔ 2 client list all message @started(20-02-12 15:06) @done(20-02-12 15:14) @lasted(8m3s)
-  ☐ 3 producer can send data
-  ☐ 3.1 producer can send json data
+  ✔ 3 producer can send data @started(20-02-12 15:15) @done(20-02-12 16:29) @lasted(1h14m24s)
+  ✔ 3.1 producer can send json data @started(20-02-12 15:18) @done(20-02-12 16:29) @lasted(1h11m27s)
   ☐ 3.2 producer can send pdf file
   ☐ 3.3 producer can send csv file
   ☐ 4 consumer can receive data
