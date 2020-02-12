@@ -1,5 +1,11 @@
+const Producer = require('./producer');
+
 class Kafka {
     
+    static Producer(client){
+        return new Producer(client);
+    }
+
     constructor(){
         this.messageQueue = [];
     }

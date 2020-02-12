@@ -6,6 +6,6 @@ Todo:
   ☐ 3.2 producer can send pdf file
   ☐ 3.3 producer can send csv file
   ☐ 4 consumer can receive data
-  ☐ 4.1 consumer can receive json data
+  ☐ 4.1 consumer can receive json data @started(20-02-12 16:30)
   ☐ 4.2 consumer can receive pdf file
   ☐ 4.3 consumer can receive csv file
