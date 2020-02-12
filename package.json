@@ -1,0 +1,26 @@
+{
+  "name": "kafka",
+  "version": "1.0.0",
+  "description": "NODE-KAFKA",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kiroInn/node-kafka.git"
+  },
+  "keywords": [
+    "message",
+    "kafka"
+  ],
+  "author": "Kiro Li",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kiroInn/node-kafka/issues"
+  },
+  "homepage": "https://github.com/kiroInn/node-kafka#readme",
+  "devDependencies": {
+    "jest": "^25.1.0"
+  }
+}
