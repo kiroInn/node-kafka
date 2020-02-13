@@ -13,10 +13,10 @@ test('should list empty message when not given any data by producer', () => {
 test('should list one json message when given send json data by producer', () => {
     const client = new Kafka();
     const producer = Kafka.Producer(client);
-    producer.send({ type: 'json', data: { key: 'json', value: 'json-value' } })
+    producer.send({ topic: 'topic-1', type: 'json', data: { key: 'json', value: 'json-value' } })
 
     const acutal = client.getMessages();
-    const expected = [{ type: 'json', data: { key: 'json', value: 'json-value' } }];
+    const expected = [{ topic: 'topic-1', type: 'json', data: { key: 'json', value: 'json-value' } }];
     expect(expected).toEqual(acutal);
 });
 
@@ -33,8 +33,8 @@ test('should receive message when producer send json data and consumer receive m
     consumer.on('message', (message) => {
         acutal = message;
     })
-    producer.send({ type: 'json', data: { key: 'json', value: 'json-value' } })
-    const expected = { type: 'json', data: { key: 'json', value: 'json-value' } };
+    producer.send({ topic: 'topic-1', type: 'json', data: { key: 'json', value: 'json-value' } })
+    const expected = { topic: 'topic-1', type: 'json', data: { key: 'json', value: 'json-value' } };
 
     expect(expected).toEqual(acutal);
 });
@@ -47,10 +47,10 @@ test('should throw error when init consumer not pass client', () => {
 test('should list pdf file message when given send pdf data by producer', () => {
     const client = new Kafka();
     const producer = Kafka.Producer(client);
-    producer.send({ type: 'pdf', data: PDF_DATA })
+    producer.send({ topic: 'topic-1', type: 'pdf', data: PDF_DATA })
 
     const acutal = client.getMessages();
-    const expected = [{ type: 'pdf', data: PDF_DATA }];
+    const expected = [{ topic: 'topic-1', type: 'pdf', data: PDF_DATA }];
     expect(expected).toEqual(acutal);
 });
 
@@ -62,8 +62,8 @@ test('should receive pdf file when producer send pdf data and consumer receive m
     consumer.on('message', (message) => {
         acutal = message;
     })
-    producer.send({ type: 'pdf', data: PDF_DATA })
-    const expected = { type: 'pdf', data: PDF_DATA };
+    producer.send({ topic: 'topic-1', type: 'pdf', data: PDF_DATA })
+    const expected = { topic: 'topic-1', type: 'pdf', data: PDF_DATA };
 
     expect(expected).toEqual(acutal);
 });
@@ -71,10 +71,10 @@ test('should receive pdf file when producer send pdf data and consumer receive m
 test('should list csv file message when given send pdf data by producer', () => {
     const client = new Kafka();
     const producer = Kafka.Producer(client);
-    producer.send({ type: 'csv', data: CSV_DATA })
+    producer.send({ topic: 'topic-1', type: 'csv', data: CSV_DATA })
 
     const acutal = client.getMessages();
-    const expected = [{ type: 'csv', data: CSV_DATA }];
+    const expected = [{ topic: 'topic-1', type: 'csv', data: CSV_DATA }];
     expect(expected).toEqual(acutal);
 });
 
@@ -86,8 +86,8 @@ test('should receive csv file when producer send pdf data and consumer receive m
     consumer.on('message', (message) => {
         acutal = message;
     })
-    producer.send({ type: 'csv', data: CSV_DATA })
-    const expected = { type: 'csv', data: CSV_DATA };
+    producer.send({ topic: 'topic-1', type: 'csv', data: CSV_DATA })
+    const expected = { topic: 'topic-1', type: 'csv', data: CSV_DATA };
 
     expect(expected).toEqual(acutal);
 });

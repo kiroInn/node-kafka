@@ -1,6 +1,7 @@
 Todo:
   ☐ 1 intro kafka
-  ☐ 9 add topic for message @started(20-02-13 11:15)
+  ✔ 9 add topic for message @started(20-02-13 11:15) @done(20-02-13 11:21) @lasted(6m39s)
+  ☐ 10 consumer can only receive subscribe topic data
 Archive:
   ✔ 6 producer can send csv file @started(20-02-13 11:11) @done(20-02-13 11:14) @lasted(3m4s) @project(Todo)
   ✔ 8 consumer can receive csv file @started(20-02-13 11:11) @done(20-02-13 11:14) @lasted(3m7s) @project(Todo)
