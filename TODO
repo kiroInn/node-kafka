@@ -1,7 +1,7 @@
 Todo:
   ☐ 1 intro kafka
-  ☐ 6 producer can send csv file
-  ☐ 8 consumer can receive csv file
+  ☐ 6 producer can send csv file @started(20-02-13 11:11)
+  ☐ 8 consumer can receive csv file @started(20-02-13 11:11)
 
 Archive:
   ✔ 2 client list all message @started(20-02-12 15:06) @done(20-02-12 15:14) @lasted(8m3s) @project(Todo)

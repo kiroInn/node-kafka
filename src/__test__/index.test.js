@@ -2,6 +2,7 @@ const Kafka = require('../index');
 const fs = require("fs");
 const FILE_PATH = './src/__test__/';
 const pdfData = fs.readFileSync(`${FILE_PATH}input/wizard-economics.pdf`);
+const csvData = fs.readFileSync(`${FILE_PATH}input/kafka.csv`);
 
 test('should list empty message when not given any data by producer', () => {
     const expected = [];
@@ -63,6 +64,30 @@ test('should receive pdf file when producer send pdf data and consumer receive m
     })
     producer.send({ type: 'pdf', data: pdfData })
     const expected = { type: 'pdf', data: pdfData };
+
+    expect(expected).toEqual(acutal);
+});
+
+test('should list csv file message when given send pdf data by producer', () => {
+    const client = new Kafka();
+    const producer = Kafka.Producer(client);
+    producer.send({ type: 'csv', data: csvData })
+
+    const acutal = client.getMessages();
+    const expected = [{ type: 'csv', data: csvData }];
+    expect(expected).toEqual(acutal);
+});
+
+test('should receive csv file when producer send pdf data and consumer receive message', () => {
+    const client = new Kafka();
+    const producer = Kafka.Producer(client);
+    const consumer = Kafka.Consumer(client);
+    let acutal;
+    consumer.on('message', (message) => {
+        acutal = message;
+    })
+    producer.send({ type: 'csv', data: csvData })
+    const expected = { type: 'csv', data: csvData };
 
     expect(expected).toEqual(acutal);
 });
