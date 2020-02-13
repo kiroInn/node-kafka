@@ -1,8 +1,8 @@
 const Kafka = require('../index');
 const fs = require("fs");
 const FILE_PATH = './src/__test__/';
-const pdfData = fs.readFileSync(`${FILE_PATH}input/wizard-economics.pdf`);
-const csvData = fs.readFileSync(`${FILE_PATH}input/kafka.csv`);
+const PDF_DATA = fs.readFileSync(`${FILE_PATH}input/wizard-economics.pdf`);
+const CSV_DATA = fs.readFileSync(`${FILE_PATH}input/kafka.csv`);
 
 test('should list empty message when not given any data by producer', () => {
     const expected = [];
@@ -47,10 +47,10 @@ test('should throw error when init consumer not pass client', () => {
 test('should list pdf file message when given send pdf data by producer', () => {
     const client = new Kafka();
     const producer = Kafka.Producer(client);
-    producer.send({ type: 'pdf', data: pdfData })
+    producer.send({ type: 'pdf', data: PDF_DATA })
 
     const acutal = client.getMessages();
-    const expected = [{ type: 'pdf', data: pdfData }];
+    const expected = [{ type: 'pdf', data: PDF_DATA }];
     expect(expected).toEqual(acutal);
 });
 
@@ -62,8 +62,8 @@ test('should receive pdf file when producer send pdf data and consumer receive m
     consumer.on('message', (message) => {
         acutal = message;
     })
-    producer.send({ type: 'pdf', data: pdfData })
-    const expected = { type: 'pdf', data: pdfData };
+    producer.send({ type: 'pdf', data: PDF_DATA })
+    const expected = { type: 'pdf', data: PDF_DATA };
 
     expect(expected).toEqual(acutal);
 });
@@ -71,10 +71,10 @@ test('should receive pdf file when producer send pdf data and consumer receive m
 test('should list csv file message when given send pdf data by producer', () => {
     const client = new Kafka();
     const producer = Kafka.Producer(client);
-    producer.send({ type: 'csv', data: csvData })
+    producer.send({ type: 'csv', data: CSV_DATA })
 
     const acutal = client.getMessages();
-    const expected = [{ type: 'csv', data: csvData }];
+    const expected = [{ type: 'csv', data: CSV_DATA }];
     expect(expected).toEqual(acutal);
 });
 
@@ -86,8 +86,8 @@ test('should receive csv file when producer send pdf data and consumer receive m
     consumer.on('message', (message) => {
         acutal = message;
     })
-    producer.send({ type: 'csv', data: csvData })
-    const expected = { type: 'csv', data: csvData };
+    producer.send({ type: 'csv', data: CSV_DATA })
+    const expected = { type: 'csv', data: CSV_DATA };
 
     expect(expected).toEqual(acutal);
 });

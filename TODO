@@ -1,9 +1,9 @@
 Todo:
   ☐ 1 intro kafka
-  ☐ 6 producer can send csv file @started(20-02-13 11:11)
-  ☐ 8 consumer can receive csv file @started(20-02-13 11:11)
-
+  ☐ 9 add topic for message @started(20-02-13 11:15)
 Archive:
+  ✔ 6 producer can send csv file @started(20-02-13 11:11) @done(20-02-13 11:14) @lasted(3m4s) @project(Todo)
+  ✔ 8 consumer can receive csv file @started(20-02-13 11:11) @done(20-02-13 11:14) @lasted(3m7s) @project(Todo)
   ✔ 2 client list all message @started(20-02-12 15:06) @done(20-02-12 15:14) @lasted(8m3s) @project(Todo)
   ✔ 3 producer can send json data @started(20-02-12 15:18) @done(20-02-12 16:29) @lasted(1h11m27s) @project(Todo)
   ✔ 4 consumer can receive json data @started(20-02-12 23:30) @done(20-02-13 00:23) @lasted(53m58s) @project(Todo)
