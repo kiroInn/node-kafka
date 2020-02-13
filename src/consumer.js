@@ -4,6 +4,8 @@ class Consumer {
         this.handlers = {};
         if (client) {
             this.client = client;
+        } else {
+            throw new Error('kafka consumer need client to instance');
         }
         client.addConsumer(this);
     }

@@ -3,7 +3,7 @@ Todo:
   ✔ 2 client list all message @started(20-02-12 15:06) @done(20-02-12 15:14) @lasted(8m3s)
   ✔ 3 producer can send json data @started(20-02-12 15:18) @done(20-02-12 16:29) @lasted(1h11m27s)
   ✔ 4 consumer can receive json data @started(20-02-12 23:30) @done(20-02-13 00:23) @lasted(53m58s)
-  ☐ 5 producer can send pdf file
+  ☐ 5 producer can send pdf file @started(20-02-13 09:42)
   ☐ 7 consumer can receive pdf file
   ☐ 6 producer can send csv file
   ☐ 8 consumer can receive csv file

@@ -31,6 +31,11 @@ test('should receive message when producer send json data and consumer receive m
     })
     producer.send({ type: 'json', data: { key: 'json', value: 'json-value' } })
     const expected = { type: 'json', data: { key: 'json', value: 'json-value' } };
-    
+
     expect(expected).toEqual(acutal);
-})
+});
+
+test('should throw error when init consumer not pass client', () => {
+    const expected = Kafka.Consumer;
+    expect(expected).toThrowError('kafka consumer need client to instance');
+});
