@@ -11,24 +11,24 @@ test('should list empty message when not given any data by producer', () => {
 });
 
 test('should list one json message when given send json data by producer', () => {
-    const client = new Kafka();
-    const producer = Kafka.Producer(client);
+    const broker = new Kafka();
+    const producer = Kafka.Producer(broker);
     producer.send({ topic: 'topic-1', type: 'json', data: { key: 'json', value: 'json-value' } })
 
-    const acutal = client.getMessages();
+    const acutal = broker.getMessages();
     const expected = [{ topic: 'topic-1', type: 'json', data: { key: 'json', value: 'json-value' } }];
     expect(expected).toEqual(acutal);
 });
 
-test('should throw error when init producer not pass client', () => {
+test('should throw error when init producer not pass broker', () => {
     const expected = Kafka.Producer;
-    expect(expected).toThrowError('kafka producer need client to instance');
+    expect(expected).toThrowError('kafka producer need broker to instance');
 });
 
 test('should receive message when producer send json data and consumer receive message', () => {
-    const client = new Kafka();
-    const producer = Kafka.Producer(client);
-    const consumer = Kafka.Consumer(client);
+    const broker = new Kafka();
+    const producer = Kafka.Producer(broker);
+    const consumer = Kafka.Consumer(broker);
     let acutal;
     consumer.on('message', (message) => {
         acutal = message;
@@ -37,27 +37,29 @@ test('should receive message when producer send json data and consumer receive m
     const expected = { topic: 'topic-1', type: 'json', data: { key: 'json', value: 'json-value' } };
 
     expect(expected).toEqual(acutal);
+    expect(broker.getMessages().length).toBe(0);
 });
 
-test('should throw error when init consumer not pass client', () => {
+test('should throw error when init consumer not pass broker', () => {
     const expected = Kafka.Consumer;
-    expect(expected).toThrowError('kafka consumer need client to instance');
+    expect(expected).toThrowError('kafka consumer need broker to instance');
 });
 
 test('should list pdf file message when given send pdf data by producer', () => {
-    const client = new Kafka();
-    const producer = Kafka.Producer(client);
+    const broker = new Kafka();
+    const producer = Kafka.Producer(broker);
     producer.send({ topic: 'topic-1', type: 'pdf', data: PDF_DATA })
 
-    const acutal = client.getMessages();
+    const acutal = broker.getMessages();
     const expected = [{ topic: 'topic-1', type: 'pdf', data: PDF_DATA }];
     expect(expected).toEqual(acutal);
+    expect(broker.getMessages().length).toBe(1);
 });
 
 test('should receive pdf file when producer send pdf data and consumer receive message', () => {
-    const client = new Kafka();
-    const producer = Kafka.Producer(client);
-    const consumer = Kafka.Consumer(client);
+    const broker = new Kafka();
+    const producer = Kafka.Producer(broker);
+    const consumer = Kafka.Consumer(broker);
     let acutal;
     consumer.on('message', (message) => {
         acutal = message;
@@ -66,22 +68,24 @@ test('should receive pdf file when producer send pdf data and consumer receive m
     const expected = { topic: 'topic-1', type: 'pdf', data: PDF_DATA };
 
     expect(expected).toEqual(acutal);
+    expect(broker.getMessages().length).toBe(0);
 });
 
 test('should list csv file message when given send pdf data by producer', () => {
-    const client = new Kafka();
-    const producer = Kafka.Producer(client);
+    const broker = new Kafka();
+    const producer = Kafka.Producer(broker);
     producer.send({ topic: 'topic-1', type: 'csv', data: CSV_DATA })
 
-    const acutal = client.getMessages();
+    const acutal = broker.getMessages();
     const expected = [{ topic: 'topic-1', type: 'csv', data: CSV_DATA }];
     expect(expected).toEqual(acutal);
+    expect(broker.getMessages().length).toBe(1);
 });
 
 test('should receive csv file when producer send pdf data and consumer receive message', () => {
-    const client = new Kafka();
-    const producer = Kafka.Producer(client);
-    const consumer = Kafka.Consumer(client);
+    const broker = new Kafka();
+    const producer = Kafka.Producer(broker);
+    const consumer = Kafka.Consumer(broker);
     let acutal;
     consumer.on('message', (message) => {
         acutal = message;
@@ -90,13 +94,14 @@ test('should receive csv file when producer send pdf data and consumer receive m
     const expected = { topic: 'topic-1', type: 'csv', data: CSV_DATA };
 
     expect(expected).toEqual(acutal);
+    expect(broker.getMessages().length).toBe(0);
 });
 
 test('should not receive message when producer send not same topic message', () => {
-    const client = new Kafka();
-    const producer = Kafka.Producer(client);
+    const broker = new Kafka();
+    const producer = Kafka.Producer(broker);
     const option = { topic: 'topic-3' }
-    const consumer = Kafka.Consumer(client, option);
+    const consumer = Kafka.Consumer(broker, option);
     let acutal;
     consumer.on('message', (message) => {
         acutal = message;
@@ -104,13 +109,14 @@ test('should not receive message when producer send not same topic message', () 
     producer.send({ topic: 'topic-1', type: 'json', data: { key: 'json', value: 'json-value' } })
 
     expect(acutal).toBeUndefined();
+    expect(broker.getMessages().length).toBe(1);
 });
 
 test('should receive message when producer send  same topic message', () => {
-    const client = new Kafka();
-    const producer = Kafka.Producer(client);
+    const broker = new Kafka();
+    const producer = Kafka.Producer(broker);
     const option = { topic: 'topic-1' }
-    const consumer = Kafka.Consumer(client, option);
+    const consumer = Kafka.Consumer(broker, option);
     let acutal;
     consumer.on('message', (message) => {
         acutal = message;
@@ -118,4 +124,5 @@ test('should receive message when producer send  same topic message', () => {
     producer.send({ topic: 'topic-1', type: 'json', data: { key: 'json', value: 'json-value' } })
     const expected = { topic: 'topic-1', type: 'json', data: { key: 'json', value: 'json-value' } }
     expect(expected).toEqual(acutal);
+    expect(broker.getMessages().length).toBe(0);
 });

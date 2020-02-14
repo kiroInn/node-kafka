@@ -3,7 +3,7 @@ class Producer {
         if (client) {
             this.client = client;
         } else {
-            throw new Error('kafka producer need client to instance');
+            throw new Error('kafka producer need broker to instance');
         }
     }
 

@@ -26,9 +26,11 @@ class Kafka {
             const consumer = this.consumers[0];
             if (!consumer.hasTopic()) {
                 consumer.emit('message', message);
+                this.messageQueue.shift();
             }
-            if(consumer.hasTopic() && message.topic && consumer.isSameTopic(message.topic)){
+            if (consumer.hasTopic() && message.topic && consumer.isSameTopic(message.topic)) {
                 consumer.emit('message', message);
+                this.messageQueue.shift();
             }
         }
     }

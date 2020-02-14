@@ -6,7 +6,7 @@ class Consumer {
         if (client) {
             this.client = client;
         } else {
-            throw new Error('kafka consumer need client to instance');
+            throw new Error('kafka consumer need broker to instance');
         }
         client.addConsumer(this);
     }
