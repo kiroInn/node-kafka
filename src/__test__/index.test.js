@@ -91,3 +91,31 @@ test('should receive csv file when producer send pdf data and consumer receive m
 
     expect(expected).toEqual(acutal);
 });
+
+test('should not receive message when producer send not same topic message', () => {
+    const client = new Kafka();
+    const producer = Kafka.Producer(client);
+    const option = { topic: 'topic-3' }
+    const consumer = Kafka.Consumer(client, option);
+    let acutal;
+    consumer.on('message', (message) => {
+        acutal = message;
+    })
+    producer.send({ topic: 'topic-1', type: 'json', data: { key: 'json', value: 'json-value' } })
+
+    expect(acutal).toBeUndefined();
+});
+
+test('should receive message when producer send  same topic message', () => {
+    const client = new Kafka();
+    const producer = Kafka.Producer(client);
+    const option = { topic: 'topic-1' }
+    const consumer = Kafka.Consumer(client, option);
+    let acutal;
+    consumer.on('message', (message) => {
+        acutal = message;
+    })
+    producer.send({ topic: 'topic-1', type: 'json', data: { key: 'json', value: 'json-value' } })
+    const expected = { topic: 'topic-1', type: 'json', data: { key: 'json', value: 'json-value' } }
+    expect(expected).toEqual(acutal);
+});

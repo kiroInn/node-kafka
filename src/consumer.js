@@ -1,7 +1,8 @@
 
 class Consumer {
-    constructor(client) {
+    constructor(client, option) {
         this.handlers = {};
+        this.option = option;
         if (client) {
             this.client = client;
         } else {
@@ -22,6 +23,14 @@ class Consumer {
         for (var i = 0; i < this.handlers[eventType].length; i++) {
             this.handlers[eventType][i].apply(this, handlerArgs);
         }
+    }
+
+    hasTopic() {
+        return this.option && this.option.topic;
+    }
+
+    isSameTopic(topic){
+        return this.hasTopic() && this.option.topic === topic;
     }
 }
 

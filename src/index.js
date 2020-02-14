@@ -7,8 +7,8 @@ class Kafka {
         return new Producer(client);
     }
 
-    static Consumer(client) {
-        return new Consumer(client);
+    static Consumer(client, option) {
+        return new Consumer(client, option);
     }
 
     constructor() {
@@ -22,12 +22,18 @@ class Kafka {
 
     push(message) {
         this.messageQueue.push(message);
-        if(this.consumers.length > 0){
-            this.consumers[0].emit('message', message);
+        if (this.consumers.length > 0) {
+            const consumer = this.consumers[0];
+            if (!consumer.hasTopic()) {
+                consumer.emit('message', message);
+            }
+            if(consumer.hasTopic() && message.topic && consumer.isSameTopic(message.topic)){
+                consumer.emit('message', message);
+            }
         }
     }
 
-    addConsumer(consumer){
+    addConsumer(consumer) {
         this.consumers.push(consumer);
     }
 }
