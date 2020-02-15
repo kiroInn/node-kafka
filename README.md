@@ -1,7 +1,7 @@
 NODE-KAFKA
 
 GOAL
-了解使用kafka的场景，及解决的问题
+了解使用kafka的场景及解决的问题
 练习TDD,编写合理的测试用例驱动开发
 
 QUESTION
